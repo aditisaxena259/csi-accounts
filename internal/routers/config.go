@@ -1,7 +1,6 @@
 package routers
 
 import (
-	"csi-accounts/internal/routes"
 
 	"github.com/gofiber/fiber/v2"
 	// Assuming routes are defined in the "internal/routes" package
