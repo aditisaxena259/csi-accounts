@@ -16,6 +16,5 @@ func welcome(c *fiber.Ctx) error {
 
 // SetUp initializes the routes for the application
 func SetUp(app *fiber.App) {
-	app.Get("/api", welcome)                // Welcome route
-	app.Post("/api/users", routes.CreateUser) // CreateUser route from routes package
+	EventRouter(app)
 }
