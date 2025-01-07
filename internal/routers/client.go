@@ -6,14 +6,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func EventRouter(app *fiber.App) {
+func ClientRouter(app *fiber.App) {
 	eventRouter := app.Group("/events")
 
-	eventRouter.Get("/", controllers.GetEvents)
-	eventRouter.Get("/:eventID", controllers.GetEvent)
-	eventRouter.Post("/", controllers.CreateEvent)
-	eventRouter.Patch("/:eventID", controllers.UpdateEvent)
-	eventRouter.Delete("/:eventID", controllers.DeleteEvent)
+	eventRouter.Get("/", controllers.GetClients)
+	eventRouter.Get("/:eventID", controllers.GetClient)
+	eventRouter.Post("/", controllers.CreateClient)
+	eventRouter.Patch("/:eventID", controllers.UpdateClient)
+	eventRouter.Delete("/:eventID", controllers.DeleteClient)
 
 	eventMembershipRouter := eventRouter.Group("/:eventID/memberships")
 	eventMembershipRouter.Get("/", controllers.GetEventMemberships)
