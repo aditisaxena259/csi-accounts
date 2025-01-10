@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"csi-accounts/internal/controllers"
+	"csi-accounts/internal/crud"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,9 +9,9 @@ import (
 func RegisterPermissionRoutes(app *fiber.App) {
 	permissionGroup := app.Group("/permissions")
 
-	permissionGroup.Get("/", controllers.GetPermissions)
-	permissionGroup.Get("/:permissionID", controllers.GetPermission)
-	permissionGroup.Post("/", controllers.CreatePermission)
-	permissionGroup.Put("/:permissionID", controllers.UpdatePermission)
-	permissionGroup.Delete("/:permissionID", controllers.DeletePermission)
+	permissionGroup.Get("/", crud.GetPermissions)
+	permissionGroup.Get("/:permissionID", crud.GetPermission)
+	permissionGroup.Post("/", crud.CreatePermission)
+	permissionGroup.Put("/:permissionID", crud.UpdatePermission)
+	permissionGroup.Delete("/:permissionID", crud.DeletePermission)
 }

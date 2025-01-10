@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"csi-accounts/internal/controllers"
+	"csi-accounts/internal/crud"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,9 +9,9 @@ import (
 func AuditLogRouter(app *fiber.App) {
 	auditLogRouter := app.Group("/audit-logs")
 
-	auditLogRouter.Get("/", controllers.GetAuditLogs)
-	auditLogRouter.Get("/:auditLogID", controllers.GetAuditLog)
-	auditLogRouter.Post("/", controllers.CreateAuditLog)
-	auditLogRouter.Patch("/:auditLogID", controllers.UpdateAuditLog)
-	auditLogRouter.Delete("/:auditLogID", controllers.DeleteAuditLog)
+	auditLogRouter.Get("/", crud.GetAuditLogs)
+	auditLogRouter.Get("/:auditLogID", crud.GetAuditLog)
+	auditLogRouter.Post("/", crud.CreateAuditLog)
+	auditLogRouter.Patch("/:auditLogID", crud.UpdateAuditLog)
+	auditLogRouter.Delete("/:auditLogID", crud.DeleteAuditLog)
 }

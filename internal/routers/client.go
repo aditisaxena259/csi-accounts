@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"csi-accounts/internal/controllers"
+	"csi-accounts/internal/crud"
 	"csi-accounts/internal/middlewares"
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,13 +9,13 @@ import (
 func ClientRouter(app *fiber.App) {
 	eventRouter := app.Group("/events")
 
-	eventRouter.Get("/", controllers.GetClients)
-	eventRouter.Get("/:eventID", controllers.GetClient)
-	eventRouter.Post("/", controllers.CreateClient)
-	eventRouter.Patch("/:eventID", controllers.UpdateClient)
-	eventRouter.Delete("/:eventID", controllers.DeleteClient)
+	eventRouter.Get("/", crud.GetClients)
+	eventRouter.Get("/:eventID", crud.GetClient)
+	eventRouter.Post("/", crud.CreateClient)
+	eventRouter.Patch("/:eventID", crud.UpdateClient)
+	eventRouter.Delete("/:eventID", crud.DeleteClient)
 
 	eventMembershipRouter := eventRouter.Group("/:eventID/memberships")
-	eventMembershipRouter.Get("/", controllers.GetEventMemberships)
-	eventMembershipRouter.Post("/coordinators/:userID", middlewares.EventAdminAuthorization, controllers.AddEventCoordinator)
+	eventMembershipRouter.Get("/", crud.GetEventMemberships)
+	eventMembershipRouter.Post("/coordinators/:userID", middlewares.EventAdminAuthorization, crud.AddEventCoordinator)
 }

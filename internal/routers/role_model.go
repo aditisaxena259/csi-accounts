@@ -1,6 +1,6 @@
 package routers 
 import (
-	"csi-accounts/internal/controllers"
+	"csi-accounts/internal/crud"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -8,9 +8,9 @@ import (
 func RegisterRoleRoutes(app *fiber.App) {
 	roleGroup := app.Group("/roles")
 
-	roleGroup.Get("/", controllers.GetRoles)
-	roleGroup.Get("/:roleID", controllers.GetRole)
-	roleGroup.Post("/", controllers.CreateRole)
-	roleGroup.Post("/:roleID/permissions", controllers.AssignPermissionsToRole)
-	roleGroup.Delete("/:roleID", controllers.DeleteRole)
+	roleGroup.Get("/", crud.GetRoles)
+	roleGroup.Get("/:roleID", crud.GetRole)
+	roleGroup.Post("/", crud.CreateRole)
+	roleGroup.Post("/:roleID/permissions", crud.AssignPermissionsToRole)
+	roleGroup.Delete("/:roleID", crud.DeleteRole)
 }

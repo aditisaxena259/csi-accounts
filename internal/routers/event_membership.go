@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"csi-accounts/internal/controllers"
+	"csi-accounts/internal/crud"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,6 +9,6 @@ import (
 func EventMembershipRoutes(app *fiber.App) {
 	eventMemberships := app.Group("/event-memberships")
 
-	eventMemberships.Get("/:eventID", controllers.GetEventMemberships)         // GET /event-memberships/:eventID
-	eventMemberships.Put("/:eventID/coordinator/:userID", controllers.AddEventCoordinator) // PUT /event-memberships/:eventID/coordinator/:userID
+	eventMemberships.Get("/:eventID", crud.GetEventMemberships)         // GET /event-memberships/:eventID
+	eventMemberships.Put("/:eventID/coordinator/:userID", crud.AddEventCoordinator) // PUT /event-memberships/:eventID/coordinator/:userID
 }
