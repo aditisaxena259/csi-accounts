@@ -1,4 +1,4 @@
-package controllers
+package crud
 
 import (
 	"csi-accounts/internal/initializers"
