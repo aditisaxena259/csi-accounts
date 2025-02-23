@@ -13,14 +13,14 @@ func RunMigrations() {
 	}
 
     err := DB.AutoMigrate(
-		&models.User{},
-		&models.Role{},
+		&models.Client{}, 
+		&models.Role{},          
 		&models.Permission{},
+		&models.Scope{},         // ✅ Scopes table must be created before ClientScope
+		&models.User{},
 		&models.Event{},
 		&models.EventMembership{},
-		&models.Scope{},
-		&models.Client{},
-		&models.ClientScope{},
+		&models.ClientScope{},   // ✅ Now, ClientScope can reference clients & scopes
 		&models.UserScope{},
 	)
 

@@ -21,7 +21,7 @@ var CONFIG Config
 
 func LoadEnv() {
 	if os.Getenv("USE_ENV_FILE") == "" || os.Getenv("USE_ENV_FILE") == "true" {
-		err := godotenv.Load("../.env")
+		err := godotenv.Load(".env")
 		if err != nil {
 			log.Fatalf("Error loading .env file: %v", err)
 		}
