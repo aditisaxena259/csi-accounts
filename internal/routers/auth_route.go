@@ -1,10 +1,12 @@
 package routers
 
 import (
-	"github.com/gorilla/mux"
 	"csi-accounts/internal/controllers"
+	"github.com/gofiber/fiber/v2"
 )
 
-func RegisterAuthRoutes(router *mux.Router) {
-	router.HandleFunc("/auth", controllers.AuthHandler).Methods("GET")
+func SetUpAuthRoutes(app *fiber.App) {
+	auth := app.Group("/auth")
+	auth.Post("/signup", controllers.Signup)
+	auth.Post("/login", controllers.Login)
 }

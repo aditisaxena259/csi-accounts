@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/google/uuid"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -25,4 +26,11 @@ func ConnectToDB() {
 	} else {
 		log.Println("✅ Connected to database!")
 	}
+}
+func UUIDFromString(id string) uuid.UUID {
+	parsedUUID, err := uuid.Parse(id)
+	if err != nil {
+		log.Fatal("❌ Invalid UUID format:", err)
+	}
+	return parsedUUID
 }

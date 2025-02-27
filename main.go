@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"csi-accounts/internal/controllers"
+	
 	"csi-accounts/internal/initializers"
 	"csi-accounts/internal/routers"
 	"csi-accounts/pkg/helpers"
@@ -38,24 +38,27 @@ func main() {
 	}))
 
 	// ✅ Handle OPTIONS preflight requests globally
-	app.Options("/*", func(c *fiber.Ctx) error {
-		return c.SendStatus(fiber.StatusNoContent)
-	})
+	// app.Options("/*", func(c *fiber.Ctx) error {
+	// 	return c.SendStatus(fiber.StatusNoContent)
+	// })
 
-	// ✅ Allow both GET and POST on "/"
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-	app.Post("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"message": "✅ POST request received!",
-			"status":  "success",
-		})
-	})
-	app.Get("/auth", func(c *fiber.Ctx) error {
-		authCode := controllers.GenerateAuthorizationCode() // Generate code
-		return c.JSON(fiber.Map{"authorization_code": authCode}) // ✅ Return correct key
-	})
+	// // ✅ Allow both GET and POST on "/"
+	// app.Get("/", func(c *fiber.Ctx) error {
+	// 	return c.SendString("Hello, World!")
+	// })
+	// app.Post("/auth", func(c *fiber.Ctx) error {
+	// 	authCode := helpers.GenerateAuthorizationCode() // ✅ Generate a real auth code
+	// 	return c.JSON(fiber.Map{
+	// 		"message":            "✅ POST request received!",
+	// 		"status":             "success",
+	// 		"authorization_code": authCode, // ✅ Correct response
+	// 	})
+	// })	
+	// app.Get("/auth", func(c *fiber.Ctx) error {
+	// 	authCode := helpers.GenerateAuthorizationCode() // Generate code
+	// 	return c.JSON(fiber.Map{"authorization_code": authCode}) // ✅ Return correct key
+	// })
+	routers.SetUpAuthRoutes(app)
 
 	// ✅ Register API routes
 	routers.SetUp(app)
