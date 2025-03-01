@@ -17,7 +17,7 @@ type User struct {
 	RoleID       uuid.UUID `gorm:"type:uuid;not null" json:"roleID"`
 	Role         Role      `gorm:"foreignKey:RoleID" json:"role"`
 	CreatedAt    time.Time `gorm:"default:current_timestamp" json:"createdAt"`
-	External     bool      `gorm:"type:book;not null" json:"external"`
+	External     bool      `gorm:"type:bool;not null" json:"external"`
 }
 
 type Status string

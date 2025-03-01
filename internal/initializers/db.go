@@ -1,9 +1,10 @@
 package initializers
 
 import (
-	"fmt"
 	"log"
+	"os"
 
+	"github.com/google/uuid"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,13 +14,23 @@ var DB *gorm.DB
 func ConnectToDB() {
 	var err error
 
-	dsn := fmt.Sprintf("%s", CONFIG.DB_URL)
+	dsn := os.Getenv("DB_URL") // ✅ Fetch from environment variable
+	if dsn == "" {
+		log.Fatal("❌ DATABASE_URL environment variable is not set!")
+		return
+	}
 
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-
 	if err != nil {
-		log.Fatal("Failed to Connect to the database")
+		log.Fatal("❌ Failed to connect to the database:", err)
 	} else {
-		log.Println("Connected to database!")
+		log.Println("✅ Connected to database!")
 	}
+}
+func UUIDFromString(id string) uuid.UUID {
+	parsedUUID, err := uuid.Parse(id)
+	if err != nil {
+		log.Fatal("❌ Invalid UUID format:", err)
+	}
+	return parsedUUID
 }
