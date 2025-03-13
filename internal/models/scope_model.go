@@ -8,7 +8,7 @@ import (
 
 type Scope struct {
 	ID          uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key" json:"id"`
-	Name        string    `gorm:"type:text;not null;default:'external';check:name IN ('READ','WRITE','DELETE','UPDATE')" json:"name"`
+	Name        string    `gorm:"type:text;not null;check:name IN ('READ','WRITE','DELETE','UPDATE')" json:"name"`
 	Description string    `gorm:"type:text" json:"description"`
 	CreatedAt   time.Time `gorm:"default:current_timestamp" json:"createdAt"`
 	UpdatedAt   time.Time `gorm:"default:current_timestamp" json:"updatedAt"`
