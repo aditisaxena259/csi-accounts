@@ -8,7 +8,7 @@ import (
 
 type Event struct {
 	ID               uuid.UUID         `gorm:"type:uuid;default:uuid_generate_v4();primary_key" json:"id"`
-	Name             string            `gorm:"type:text;not null;default:'external';check: Name IN ('external', 'board', 'senior', 'junior')" json:"name"`
+	Name             string            `gorm:"type:text;not null" json:"name"`
 	Date             time.Time         `gorm:"" json:"date"`
 	Location         string            `gorm:"type:text" json:"location"`
 	CreatedAt        time.Time         `gorm:"default:current_timestamp" json:"createdAt"`
@@ -31,4 +31,4 @@ const (
 	Participant EventRole = "participant"
 	Coordinator EventRole = "coordinator"
 	Admin       EventRole = "admin"
-)
+) 

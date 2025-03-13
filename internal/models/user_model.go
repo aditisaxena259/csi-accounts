@@ -15,7 +15,6 @@ type User struct {
 	PasswordHash string    `json:"-"`
 	Status       Status    `gorm:"type:text;not null" json:"status"`
 	RoleID       uuid.UUID `gorm:"type:uuid;not null" json:"roleID"`
-	Role         Role      `gorm:"foreignKey:RoleID" json:"role"`
 	CreatedAt    time.Time `gorm:"default:current_timestamp" json:"createdAt"`
 	External     bool      `gorm:"type:bool;not null" json:"external"`
 }
