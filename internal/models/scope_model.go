@@ -24,10 +24,8 @@ type ClientScope struct {
 }
 
 type UserScope struct {
-    ID       uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key" json:"id"`
-    UserID   uuid.UUID `gorm:"type:uuid;not null;index" json:"userID"`
-    User     User      `gorm:"foreignKey:UserID" json:"user"`
-    ScopeID  uuid.UUID `gorm:"type:uuid;not null;index" json:"scopeID"`
-    Scope    Scope     `gorm:"foreignKey:ScopeID" json:"scope"`
+    ID        uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key" json:"id"`
+    UserID    uuid.UUID `gorm:"type:uuid;not null;index" json:"userID"`
+    ScopeID   uuid.UUID `gorm:"type:uuid;not null;index" json:"scopeID"`
     CreatedAt time.Time `gorm:"default:current_timestamp" json:"createdAt"`
 }
